@@ -23,10 +23,9 @@ const ShoppingCart = () => {
   const [visible, setVisible] = useState(false);
   const allListData = useRef<any[]>([]);
 
-  // 自己Mock下数据
+  // Mock数据
   const getProductInfo = () => {
     const { sort = 'asc' } = form.getFieldsValue();
-    console.log(sort);
     const sortFn = sort === 'asc' ? (a, b) => a.price - b.price : (a, b) => b.price - a.price;
     setListData(mockData.sort(sortFn));
     allListData.current = mockData;
@@ -45,7 +44,7 @@ const ShoppingCart = () => {
       return { ...item };
     });
     if (!isExist) {
-      // TODO size的处理没做  自己做下
+      // TODO size的处理
       total += info.price;
       newData.push({ id: info.id, title: info.title, count: 1, size: 'XXL', price: info.price });
     }
@@ -56,6 +55,7 @@ const ShoppingCart = () => {
   const onFormChange = (key, newVal) => {
     const formValue = form.getFieldsValue();
     form.setFieldsValue({ ...formValue, [key]: newVal });
+    // 尺码排序
     if (key === 'size') {
       const sizeMap = {};
       newVal.forEach(item => {
@@ -66,11 +66,12 @@ const ShoppingCart = () => {
       );
       setListData(newListData);
     }
+    // 价格排序
     if (key === 'sort') {
-      // TODO 没生效
-      console.log(newVal);
       setListData(
-        listData.sort(newVal === 'asc' ? (a, b) => a.price - b.price : (a, b) => b.price - a.price),
+        listData
+          .slice()
+          .sort(newVal === 'asc' ? (a, b) => a.price - b.price : (a, b) => b.price - a.price),
       );
     }
   };
@@ -78,7 +79,7 @@ const ShoppingCart = () => {
   const getCardInfo = info => (
     <div className="card-info">
       <div className="card-name">{info.title}</div>
-      <div className="card-price">{info.price}</div>
+      <div className="card-price">{Number(info.price).toFixed(2)}</div>
       <div className="card-size">{(info.availableSizes || []).join(',')}</div>
       <div>{info.description || ''}</div>
       <div style={{ marginTop: 8 }}>
@@ -195,10 +196,9 @@ const ShoppingCart = () => {
       <div>
         <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
           {listData.map(item => (
-            <Col xs={24} sm={12} md={12} lg={8} xl={6} style={{ marginTop: 12 }}>
+            <Col key={item.id} xs={24} sm={12} md={12} lg={8} xl={6} style={{ marginTop: 12 }}>
               <Card
                 hoverable
-                key={item.id}
                 cover={
                   <img
                     alt={item.title}

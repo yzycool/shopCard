@@ -13,6 +13,9 @@ export const mockData = [
     sku: 8552515751438644,
     style: 'White T-shirt',
     title: 'Cropped Stay Groovy off white',
+    img: 'https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png',
+    hoverUrl:
+      'https://react-shopping-cart-67954.firebaseapp.com/static/media/12064273040195392-2-product.71724fe50e92c9279519.webp',
   },
   {
     availableSizes: ['X', 'ML', 'L'],
@@ -26,6 +29,9 @@ export const mockData = [
     sku: 39876704341265610,
     style: 'Wine',
     title: 'Basic Cactus White T-shirt',
+    img: 'https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png',
+    hoverUrl:
+      'https://react-shopping-cart-67954.firebaseapp.com/static/media/12064273040195392-2-product.71724fe50e92c9279519.webp',
   },
   {
     availableSizes: ['XL'],
@@ -39,6 +45,9 @@ export const mockData = [
     sku: 9197907543445676,
     style: 'Tony Hawk',
     title: 'Skater Black Sweatshirt',
+    img: 'https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png',
+    hoverUrl:
+      'https://react-shopping-cart-67954.firebaseapp.com/static/media/12064273040195392-2-product.71724fe50e92c9279519.webp',
   },
   {
     availableSizes: ['M', 'ML'],
@@ -52,6 +61,9 @@ export const mockData = [
     sku: 51498472915966370,
     style: 'Tule',
     title: 'Black Tule Oversized',
+    img: 'https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png',
+    hoverUrl:
+      'https://react-shopping-cart-67954.firebaseapp.com/static/media/12064273040195392-2-product.71724fe50e92c9279519.webp',
   },
   {
     availableSizes: ['S', 'XS'],
@@ -65,6 +77,9 @@ export const mockData = [
     sku: 12064273040195392,
     style: 'Really Cool T-shirt',
     title: 'Black Batman T-shirt',
+    img: 'https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png',
+    hoverUrl:
+      'https://react-shopping-cart-67954.firebaseapp.com/static/media/12064273040195392-2-product.71724fe50e92c9279519.webp',
   },
   {
     availableSizes: ['X', 'L', 'XL'],
@@ -78,6 +93,9 @@ export const mockData = [
     sku: 10686354557628304,
     style: 'Mark Zuck have 365 of this one',
     title: 'Blue T-Shirt',
+    img: 'https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png',
+    hoverUrl:
+      'https://react-shopping-cart-67954.firebaseapp.com/static/media/12064273040195392-2-product.71724fe50e92c9279519.webp',
   },
   {
     availableSizes: ['X', 'L', 'XL', 'XXL'],
@@ -91,6 +109,9 @@ export const mockData = [
     sku: 11033926921508488,
     style: '',
     title: 'Loose Black T-shirt',
+    img: 'https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png',
+    hoverUrl:
+      'https://react-shopping-cart-67954.firebaseapp.com/static/media/12064273040195392-2-product.71724fe50e92c9279519.webp',
   },
   {
     availableSizes: ['X', 'L', 'XL', 'XXL'],
@@ -104,6 +125,9 @@ export const mockData = [
     sku: 18644119330491310,
     style: 'White T-shirt',
     title: 'Ringer Hall Pass',
+    img: 'https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png',
+    hoverUrl:
+      'https://react-shopping-cart-67954.firebaseapp.com/static/media/12064273040195392-2-product.71724fe50e92c9279519.webp',
   },
   {
     availableSizes: ['X', 'L'],
@@ -117,6 +141,9 @@ export const mockData = [
     sku: 11854078013954528,
     style: 'You will like this one',
     title: 'Grey T-shirt',
+    img: 'https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png',
+    hoverUrl:
+      'https://react-shopping-cart-67954.firebaseapp.com/static/media/12064273040195392-2-product.71724fe50e92c9279519.webp',
   },
   {
     availableSizes: ['X', 'L'],
@@ -130,6 +157,9 @@ export const mockData = [
     sku: 876661122392077,
     style: 'Adidas originals',
     title: 'Black T-shirt with white stripes',
+    img: 'https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png',
+    hoverUrl:
+      'https://react-shopping-cart-67954.firebaseapp.com/static/media/12064273040195392-2-product.71724fe50e92c9279519.webp',
   },
   {
     availableSizes: ['X', 'L', 'XL'],
@@ -143,6 +173,9 @@ export const mockData = [
     sku: 10547961582846888,
     style: 'Cowabunga!',
     title: 'Turtles Ninja T-shirt',
+    img: 'https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png',
+    hoverUrl:
+      'https://react-shopping-cart-67954.firebaseapp.com/static/media/12064273040195392-2-product.71724fe50e92c9279519.webp',
   },
   {
     availableSizes: ['XL', 'XXL'],
@@ -156,6 +189,9 @@ export const mockData = [
     sku: 6090484789343891,
     style: 'When you wish well',
     title: 'Slim black T-shirt',
+    img: 'https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png',
+    hoverUrl:
+      'https://react-shopping-cart-67954.firebaseapp.com/static/media/12064273040195392-2-product.71724fe50e92c9279519.webp',
   },
   {
     availableSizes: ['S'],
@@ -169,6 +205,9 @@ export const mockData = [
     sku: 18532669286405344,
     style: 'Very comfy',
     title: 'Blue Sweatshirt',
+    img: 'https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png',
+    hoverUrl:
+      'https://react-shopping-cart-67954.firebaseapp.com/static/media/12064273040195392-2-product.71724fe50e92c9279519.webp',
   },
   {
     availableSizes: ['XL'],
@@ -182,6 +221,9 @@ export const mockData = [
     sku: 5619496040738316,
     style: 'Girl the future is all your',
     title: 'White T-shirt Gucci',
+    img: 'https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png',
+    hoverUrl:
+      'https://react-shopping-cart-67954.firebaseapp.com/static/media/12064273040195392-2-product.71724fe50e92c9279519.webp',
   },
   {
     availableSizes: ['L', 'XL'],
@@ -195,6 +237,9 @@ export const mockData = [
     sku: 11600983276356164,
     style: '',
     title: 'Tropical Wine T-shirt',
+    img: 'https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png',
+    hoverUrl:
+      'https://react-shopping-cart-67954.firebaseapp.com/static/media/12064273040195392-2-product.71724fe50e92c9279519.webp',
   },
   {
     availableSizes: ['L', 'XL'],
@@ -208,6 +253,9 @@ export const mockData = [
     sku: 27250082398145996,
     style: '',
     title: 'Marine Blue T-shirt',
+    img: 'https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png',
+    hoverUrl:
+      'https://react-shopping-cart-67954.firebaseapp.com/static/media/12064273040195392-2-product.71724fe50e92c9279519.webp',
   },
 ];
 
