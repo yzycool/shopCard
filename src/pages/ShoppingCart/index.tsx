@@ -22,9 +22,10 @@ import { mockData } from './mockdata';
 
 import '@/styles/pages/shoppingcart.less';
 
-const { Meta } = Card;
+const sizeOptions = ['X', 'XS', 'S', 'M', 'ML', 'L', 'XL', 'XXL'];
 
-const sizeOptions = ['XS', 'S', 'M', 'L', 'XL', 'XLL'];
+// const firstImageUrl = '../../assets/img/2.jpg';
+// const secondImageUrl = '../../assets/img/3.jpg';
 
 const allCountAtom = atomWithStorage('testCount', 0);
 const totalPriceAtom = atomWithStorage('totalPrice', 0);
@@ -41,7 +42,8 @@ const ShoppingCart = () => {
   const [isModalOpenTwo, setIsModalOpenTwo] = useState(false);
   const [currentSelectSize, setSelectSize] = useState('XS');
   const [currentSelectShop, setCurrentSelectShop] = useState({});
-  const [currentShopSize, setCurrentShopSize] = useState(['X', 'L', 'XL', 'XXL']);
+  const [currentShopSize, setCurrentShopSize] = useState(sizeOptions);
+  const [imageMap, setImageMap] = useState({});
   const [spinning, setSpinning] = useState(false);
   const allListData = useRef<any[]>([]);
 
@@ -49,8 +51,12 @@ const ShoppingCart = () => {
   const getProductInfo = () => {
     const { sort = 'asc' } = form.getFieldsValue();
     const sortFn = sort === 'asc' ? (a, b) => a.price - b.price : (a, b) => b.price - a.price;
-    setListData(mockData.sort(sortFn));
+    setSpinning(true);
     allListData.current = mockData;
+    setTimeout(() => {
+      setListData(mockData.sort(sortFn));
+      setSpinning(false);
+    }, 3000);
   };
   // 选择尺码
   const selectSizeFun = info => {
@@ -58,35 +64,28 @@ const ShoppingCart = () => {
     setCurrentShopSize(info.availableSizes);
     setCurrentSelectShop(info);
   };
-  const showLoader = () => {
-    setSpinning(true);
-    setTimeout(() => {
-      setSpinning(false);
-    }, 3000);
-  };
-  useEffect(() => {
-    showLoader();
-  }, []);
+
   const addToShoppingCard = info => {
     // 判断购物车中是否存在
     let isExist = false;
     let total = 0;
     let allCount = 0;
     const newData = shoppingCartData.map((item: any) => {
-      total += item.price * item.count;
-      allCount += item.count;
-      if (item.id === info.id && item.size === currentSelectSize) {
+      if (item.id === `${info.id}_${currentSelectSize}`) {
+        total += item.price * (item.count + 1);
+        allCount += item.count + 1;
         isExist = true;
         return { ...item, count: item.count + 1 };
       }
+      total += item.price * item.count;
+      allCount += item.count;
       return { ...item };
     });
     if (!isExist) {
-      // TODO size的处理
       total += info.price;
       allCount += 1;
       newData.push({
-        id: info.id,
+        id: `${info.id}_${currentSelectSize}`,
         title: info.title,
         count: 1,
         size: currentSelectSize,
@@ -223,27 +222,26 @@ const ShoppingCart = () => {
       key: 'ope',
       width: 80,
       render: (_, record) => (
-        <Button
-          danger
+        <DeleteOutlined
+          style={{ marginLeft: 16 }}
           onClick={() => {
             let total = 0;
             let count = 0;
             const newShoppingCartData = shoppingCartData.filter((item: any) => {
-              if (item.id !== record.id && item.size === record.size) {
+              console.log('item', item);
+              console.log('record', record);
+              if (item.id !== record.id || item.size !== record.size) {
                 total += item.price * item.count;
                 count += item.count;
               }
-              return item.id !== record.id;
+              return item.id !== record.id || item.size !== record.size;
             });
-
             setShopCartData(newShoppingCartData as any);
             setTotalPrice(total);
             setCount(count);
             // dispatch(setShoppingCartData({ data: newShoppingCartData, total }));
           }}
-        >
-          <DeleteOutlined /> 删除
-        </Button>
+        />
       ),
     },
   ];
@@ -284,25 +282,31 @@ const ShoppingCart = () => {
           购物车{testCount}
         </div>
       </div>
-      <div>
-        <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
-          {listData.map(item => (
-            <Col key={item.id} xs={24} sm={12} md={12} lg={8} xl={6} style={{ marginTop: 12 }}>
-              <Card
-                hoverable
-                cover={
-                  <img
-                    alt={item.title}
-                    src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"
-                  />
-                }
-              >
-                <Meta title={getCardInfo(item)} />
-              </Card>
-            </Col>
-          ))}
-        </Row>
-      </div>
+      <Spin spinning={spinning}>
+        <div>
+          <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
+            {listData.map(item => (
+              <Col key={item.id} xs={24} sm={12} md={12} lg={8} xl={6} style={{ marginTop: 12 }}>
+                <div className="card-box">
+                  <div
+                    className="card-img-box"
+                    key={item.id}
+                    onMouseEnter={() => {
+                      setImageMap({ ...imageMap, [item.id]: item.hoverUrl });
+                    }}
+                    onMouseLeave={() => {
+                      setImageMap({ ...imageMap, [item.id]: item.img });
+                    }}
+                  >
+                    <img src={imageMap[item.id] || item.img} alt={item.title} />
+                  </div>
+                  <div>{getCardInfo(item)}</div>
+                </div>
+              </Col>
+            ))}
+          </Row>
+        </div>
+      </Spin>
       <Drawer
         title="购物车"
         placement="right"
@@ -324,16 +328,11 @@ const ShoppingCart = () => {
           结算
         </Button>
       </Drawer>
-      <Modal
-        title="Basic Modal"
-        open={isModalOpenOne}
-        onOk={() => handleOk()}
-        onCancel={handleCancel}
-      >
+      <Modal title="结账" open={isModalOpenOne} onOk={() => handleOk()} onCancel={handleCancel}>
         <p>一共{Number(totalPrice).toFixed(2)}，确认支付吗</p>
       </Modal>
       <Modal
-        title="Basic Modal"
+        title="选择尺码"
         open={isModalOpenTwo}
         onOk={() => selectSizeOk()}
         onCancel={handleCancel}
@@ -346,7 +345,6 @@ const ShoppingCart = () => {
           ))}
         </Radio.Group>
       </Modal>
-      <Spin spinning={spinning} fullscreen />
     </>
   );
 };
