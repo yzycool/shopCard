@@ -199,7 +199,8 @@ const ShoppingCart = () => {
             let total = 0;
             let count = 0;
             const newShoppingCartData = shoppingCartData.map((item: any) => {
-              if (item.id === record.id) {
+              console.log('item', record);
+              if (item.id === record.id && item.size === record.size) {
                 total += item.price * val;
                 count += item.count;
                 return { ...item, count: val };
@@ -228,7 +229,7 @@ const ShoppingCart = () => {
             let total = 0;
             let count = 0;
             const newShoppingCartData = shoppingCartData.filter((item: any) => {
-              if (item.id !== record.id) {
+              if (item.id !== record.id && item.size === record.size) {
                 total += item.price * item.count;
                 count += item.count;
               }
@@ -339,7 +340,9 @@ const ShoppingCart = () => {
       >
         <Radio.Group onChange={onChange} value={currentSelectSize}>
           {currentShopSize.map(item => (
-            <Radio value={item}>{item}</Radio>
+            <Radio key={item} value={item}>
+              {item}
+            </Radio>
           ))}
         </Radio.Group>
       </Modal>
