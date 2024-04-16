@@ -29,7 +29,7 @@ export const mockData = [
     sku: 39876704341265610,
     style: 'Wine',
     title: 'Basic Cactus White T-shirt',
-    img: 'https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png',
+    img: 'https://react-shopping-cart-67954.firebaseapp.com/static/media/8552515751438644-1-product.b6128dd1df3de552cf1b.webp',
     hoverUrl:
       'https://react-shopping-cart-67954.firebaseapp.com/static/media/12064273040195392-2-product.71724fe50e92c9279519.webp',
   },

@@ -198,7 +198,6 @@ const ShoppingCart = () => {
             let total = 0;
             let count = 0;
             const newShoppingCartData = shoppingCartData.map((item: any) => {
-              console.log('item', record);
               if (item.id === record.id && item.size === record.size) {
                 total += item.price * val;
                 count += item.count;
@@ -228,8 +227,6 @@ const ShoppingCart = () => {
             let total = 0;
             let count = 0;
             const newShoppingCartData = shoppingCartData.filter((item: any) => {
-              console.log('item', item);
-              console.log('record', record);
               if (item.id !== record.id || item.size !== record.size) {
                 total += item.price * item.count;
                 count += item.count;
@@ -279,7 +276,8 @@ const ShoppingCart = () => {
             setVisible(true);
           }}
         >
-          购物车{testCount}
+          <div>购物车</div>
+          <div>{testCount}</div>
         </div>
       </div>
       <Spin spinning={spinning}>
